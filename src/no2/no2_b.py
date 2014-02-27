@@ -13,20 +13,24 @@ class Queue(object):
     def peek(self):
         if not self.st2.empty():
             return self.st2.peek()
-        while not self.st1.empty():
-            self.st2.push(self.st1.pop())
+        self.refill()
         return self.st2.peek()
 
     def remove(self):
         if not self.st2.empty():
             return self.st2.pop()
-        while not self.st1.empty():
-            self.st2.push(self.st1.pop())
+        self.refill()
         return self.st2.pop()
 
     def size(self):
         return self.st1.size() + self.st2.size()
 
+    def refill(self):
+        """
+        move value from st1 to st2
+        """
+        while not self.st1.empty():
+            self.st2.push(self.st1.pop())
 
 if __name__ == "__main__":
     queue = Queue()
