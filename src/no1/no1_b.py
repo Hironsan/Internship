@@ -1,5 +1,5 @@
 def isSubstring(s1, s2):
-    print "true" if s1 in s2 or s2 in s1 else "false"
+    print "true" if s2 in s1 else "false"
 
 
 s1 = raw_input()
