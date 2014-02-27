@@ -3,7 +3,7 @@ class Stack(object):
         self.contents = []
 
     def empty(self):
-        return en(self.contents) == 0
+        return len(self.contents) == 0
 
     def peek(self):
         if self.empty():
