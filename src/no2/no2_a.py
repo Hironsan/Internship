@@ -3,7 +3,7 @@ class Stack(object):
         self.contents = []
 
     def empty(self):
-        return True if len(self.contents) == 0 else False
+        return en(self.contents) == 0
 
     def peek(self):
         if self.empty():
@@ -34,8 +34,8 @@ if __name__ == "__main__":
     print stack.peek()
     stack.push(1)
     print stack.empty()
-    print stack.pop()
     print stack.peek()
+    print stack.pop()
     for i in range(3):
         stack.push(i)
     while not stack.empty():
