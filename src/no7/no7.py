@@ -1,35 +1,56 @@
-def get_max_line(line):
+def get_max_xline(points):
     maxval = 0
     maxidx = -1
-    for i, v in enumerate(line):
+    for i, line in enumerate(points):
+        v = sum(line)
         if v > maxval:
             maxval = v
             maxidx = i
     return maxval, maxidx
 
 
-def solve(N, K, x_line, y_line):
+def get_max_yline(points):
+    maxval = 0
+    maxidx = -1
+    for i in range(len(points)):
+        v = 0
+        for j in range(len(points)):
+            v += points[j][i]
+        if v > maxval:
+            maxval = v
+            maxidx = i
+    return maxval, maxidx
+
+
+def del_xline(idx, points):
+    for i in range(len(poitns)):
+        points[idx][i] = 0
+
+
+def del_yline(idx, points):
+    for i in range(len(points)):
+        points[i][idx] = 0
+
+def solve(N, K, points):
     cnt = 0
     delete_num = 0
     while delete_num < K:
-        x_star_num, x_idx = get_max_line(x_line)
-        y_star_num, y_idx = get_max_line(y_line)
+        x_star_num, x_idx = get_max_xline(points)
+        y_star_num, y_idx = get_max_yline(y_line)
         if x_star_num > y_star_num:
             delete_num += x_star_num
-            x_line[x_idx] = 0
+            del_xline(x_idx, points)
         else:
             delete_num += y_star_num
-            y_line[y_idx] = 0
+            del_yline(y_idx, points)
         cnt += 1
     return cnt
 
 if __name__ == "__main__":
     N = input("N = ")
     K = input("K = ")
-    x_line = [0] * N
-    y_line = [0] * N
-    points = [map(int, raw_input().split(",")) for i in range(K)]
-    for x, y in points:
-        x_line[x] += 1
-        y_line[y] += 1
-    print solve(N, K, x_line, y_line)
+    points = [[0] * N for i in range(N)]
+    for i in range(K):
+        R, C = map(int, raw_input().split(","))
+        points[R][C] = 1
+    print solve(N, K, points)
