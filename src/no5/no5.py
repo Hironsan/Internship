@@ -11,7 +11,7 @@ def solve(lst):
     ansm, ansn = 0, length
     sorted_list = sorted(lst)
     for m in range(length-1):
-        for n in range(m+1, length):
+        for n in range(m+1, length+1):
             part_sorted_lst = lst[:m] + sorted(lst[m:n]) + lst[n:]
             if is_sorted(sorted_list, part_sorted_lst):
                 if min_siz > n - m - 1:
