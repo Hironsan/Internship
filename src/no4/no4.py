@@ -1,9 +1,17 @@
+MINUS1 = -1
+
 def minus(a, b):
-    return a + (-b)
+    if b < 0:
+        for i in range(abs(b)):
+            a += 1
+        return a
+    for i in range(abs(b)):
+        a += MINUS1
+    return a
 
 def multiply(a, b):
     if a < 0 and b < 0:
-        return sum(-a for i in range(-b))
+        return sum(minus(0, a) for i in range(minus(0, b)))
     if b < 0:
         a, b = b, a
         return sum(a for i in range(b))
