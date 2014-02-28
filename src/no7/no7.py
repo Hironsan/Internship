@@ -23,7 +23,7 @@ def get_max_yline(points):
 
 
 def del_xline(idx, points):
-    for i in range(len(poitns)):
+    for i in range(len(points)):
         points[idx][i] = 0
 
 
@@ -36,7 +36,7 @@ def solve(N, K, points):
     delete_num = 0
     while delete_num < K:
         x_star_num, x_idx = get_max_xline(points)
-        y_star_num, y_idx = get_max_yline(y_line)
+        y_star_num, y_idx = get_max_yline(points)
         if x_star_num > y_star_num:
             delete_num += x_star_num
             del_xline(x_idx, points)
