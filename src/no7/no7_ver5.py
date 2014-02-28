@@ -17,6 +17,9 @@ while not Q.empty():
     for i in range(N):
         if i not in used:
             new_used = deepcopy(used)
-            new_used.add(i)
-            Q.put((cnt+1, del_point(points, 0, i), new_used))
-            Q.put((cnt+1, del_point(points, 1, i), new_used))
+            if (0, i) not in new_used:
+                new_used.add((0, i))
+                Q.put((cnt+1, del_point(points, 0, i), new_used))
+            if (1, i) not in new_used:
+                new_used.add((1, i))
+                Q.put((cnt+1, del_point(points, 1, i), new_used))
